@@ -9,8 +9,8 @@
   </head>
   <body>
     <div id="app">
-      <tool v-for="post in posts" v-bind:post="post"
-      v-bind:style="{fontSize:postFontSize+'em'}"></tool>
+      <post-blog v-for="post in posts" v-bind:post="post"
+      v-on:larger="zoomFont" v-bind:style="{fontSize:postFontSize+'em'}"></post-blog>
     </div>
   </body>
   <script>
@@ -18,15 +18,21 @@
       props: ["post"],
       template: `<div>
       <h3>{{post.title}}</h3>
+      <button v-on:click="enLarge">放大字体</button>
       <div>{{post.content}}</div>
       <div>{{post.postAt}}</div>
       </div>`,
+      methods:{
+        enLarge:function(){
+          this.$emit('larger')
+        }
+      }
     };
 
     new Vue({
       el: "#app",
       components: {
-        tool,
+        'postBlog':tool,
       },
       data: {
         posts: [
@@ -35,6 +41,11 @@
         ],
         postFontSize: 1,
       },
+      methods:{
+        zoomFont:function(){
+          this.postFontSize+=0.1
+        }
+      }
     });
   </script>
 </html>

@@ -1,16 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="./vue.js"></script>
-</head>
-<body>
-  
-</body>
-<script>
-  
-</script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{total}}</p>
+      <button-count v-on:increment="incrementTotal">点击加一 </button-count>
+      <button-count v-on:increment="incrementTotal">点击加一</button-count>
+    </div>
+  </body>
+  <script>
+    let countButton = {
+      template: `  <button v-on:click="incrementHandler">{{count}}</button>`,
+      data: function(){
+        return{
+          count: 0
+        }
+      },
+      methods: {
+        incrementHandler: function () {
+          this.count += 1;
+          this.$emit("increment");
+        },
+      },
+    };
+
+    new Vue({
+      el: "#app",
+      data: {
+        total: 0,
+      },
+      components: {
+        'buttonCount': countButton,
+      },
+      methods: {
+        incrementTotal: function () {
+          this.total += 1;
+        },
+      },
+    });
+  </script>
 </html>
