@@ -52,7 +52,9 @@
       },
       // setter
       set: function (newValue) {
-        var names = newValue.split(' ')
+        console.log(newValue)//'菜鸟教程 http://www.runoob.com'
+        var names = newValue.split(' ')//把空格前和空格后的字符串拆分
+        console.log(names[0])//‘菜鸟教程’
         this.name = names[0]
         this.url = names[names.length - 1]
       }

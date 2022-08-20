@@ -25,16 +25,19 @@
   var vm = new Vue({
     el: "#app",
     data: {
-      counter: 1
+      counter: 1//初始化为1
     }
   })
+  // watch负责监听{{counter}}的变化
   vm.$watch("counter", function (later, former) {
+    //later和former分别是counter前后的值
     alert("计数器变化" + former + "变为" + later)
   })
 
   var vm2 = new Vue({
     el: "#demo",
     data: {
+      //初始化绑定的v-model
       kilometers: 0,
       meters: 0
     },
@@ -42,11 +45,12 @@
     computed: {},
     watch: {
       kilometers: function (val) {
+        console.log(val)//1,传入的val表示input中的输入
         this.kilometers = val;
-        this.meters = this.kilometers * 1000
+        this.meters = this.kilometers * 1000//换算
       },
       meters: function (val) {
-        this.kilometers = val / 1000;
+        this.kilometers = val / 1000;//换算
         this.meters = val;
       }
     }

@@ -11,6 +11,7 @@
 
 <body>
   <div id="app">
+    <!-- if返回的是true则显示if绑定的内容，否则返回else中的内容 -->
     <p v-if="Math.random()>0.5">大于0.5</p>
     <p v-else>小于0.5</p>
   </div>
@@ -20,6 +21,7 @@
     <p v-else-if="type==='C'">C</p>
   </div>
   <div id="demo2">
+    <!-- v-show表示是否显示此元素 -->
     <p v-show="ok">hello world</p>
   </div>
 </body>

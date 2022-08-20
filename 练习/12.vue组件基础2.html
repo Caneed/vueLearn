@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./vue.js"></script>
+  </head>
+  <body>
+    <!-- <post-blog id="app" title="hello vue"></post-blog> -->
+
+    <div id="demo">
+      <post-blog v-for="post in posts" v-bind:post="post"></post-blog>
+    </div>
+  </body>
+  <script>
+    Vue.component("post-blog", {
+      // 属性太多时，props中可以传入一个对象，模板中传入对象的属性
+      props: ["post"],
+      template:
+        `<div><h3>{{post.title}}</h3>
+        <div :style="{fontSize:postFontSize+'em'}">{{post.content}}</div>
+        <div>{{post.postAt}}</div></div>`,
+    });
+
+    new Vue({
+      el: "#demo",
+      data: {
+        posts: [
+          { title: "hello vue" },
+          { content: "this is the content" },
+          { postAt: "2022-8-19" },
+        ],
+        postFontSize:12
+      },
+    });
+  </script>
+</html>

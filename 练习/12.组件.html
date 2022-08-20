@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>组件包裹测试</title>
+		<script type="text/javascript" src="./vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<post-blog v-for="item of posts":post="item"></post-blog>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var postBlog={
+			props:['post'],
+			template:`<div><h3>{{post.title}}</h3>
+			<div>{{post.content}}</div>
+			<div>{{post.postAt}}</div>
+			`,	
+		}
+		new Vue({
+			el:'#app',
+			components:{
+				postBlog
+			},
+			data(){
+				return {
+					posts:[{
+						title:'hello vue',
+						content:'this is the content',
+						postAt:'2022-08-19'
+					},{
+						title:'hello liu',
+						content:'this is the content',
+						postAt:'2022-08-05'
+					}]
+				}
+			}}
+			)
+	</script>
+</html>

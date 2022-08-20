@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./vue.js"></script>
+  </head>
+  <body>
+    <button-counter id="app"> </button-counter>
+
+    <div id="demo">
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+    </div>
+
+
+    <div id="blog">
+      <post-blog title="hello world"></post-blog>
+      <post-blog title="hello vue"></post-blog>
+    </div>
+
+    <div id="blogArr">
+      <post-blog v-for="content in contents"
+      v-bind:key="content.id"
+      v-bind:title="content.title"></post-blog>
+    </div>
+  </body>
+  <script>
+    // 注册名为button-counter的组件
+    Vue.component("button-counter", {
+      data: function () {
+        return {
+          // 初始化数据
+          count: 0,
+        };
+      },
+      //DOM模板
+      template:
+        '<button v-on:click="count++">You clicked me {{ count }} times.</button>',
+    });
+    let vm = new Vue({
+      el: "#app",
+    });
+
+    let vm2 = new Vue({
+      el: "#demo",
+    });
+  </script>
+  <script>
+    Vue.component("post-blog", {
+      // 给注册的博文组件中添加一个title属性
+      props: ["title"],
+      template: "<h3>{{title}}</h3>",
+    });
+    let vm3=new Vue({
+      el:'#blog',
+    })
+    let vm4=new Vue({
+      el:'#blogArr',
+      data:{
+        contents:[
+          {id:1,title:'hello vue'},
+          {id:2,title:'hello world'}
+        ]
+      }
+    })
+  </script>
+</html>

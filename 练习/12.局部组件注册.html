@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="app" v-bind:style="{fontsize:blogFontSize+'em'}">
+    <blog-post v-for="post in posts" v-bind:post="post"></blog-post>
+  </div>
+</body>
+<script>
+  let tool={
+    props:['post'],
+    template:`<div>
+    <h3>标题：{{post.title}}</h3>
+      <div>发布于：{{post.postAt}}</div>
+      <div>内容：{{post.content}}</div>
+      </div>`
+  }
+
+  new Vue({
+    el:'#app',
+    components:{
+      'blogPost':tool
+    },
+    data:{
+      posts:[
+        {title:'题目1',postAt:'1999-10-1',content:'内容1'},
+        {title:'题目2',postAt:'1999-10-2',content:'内容2'},
+      ],
+      blogFontSize:2
+    }
+  })
+</script>
+</html>
