@@ -24,7 +24,9 @@
       </div>`,
       methods:{
         enLarge:function(){
-          this.$emit('larger')
+          // this.$emit('larger')//创建了一个关于父类的监听事件
+          this.$emit('larger',0.1)
+          console.log()
         }
       }
     };
@@ -42,8 +44,10 @@
         postFontSize: 1,
       },
       methods:{
-        zoomFont:function(){
-          this.postFontSize+=0.1
+        zoomFont:function(e){
+          // this.postFontSize+=0.1
+          this.postFontSize+=e
+          console.log(this.postFontSize)
         }
       }
     });
