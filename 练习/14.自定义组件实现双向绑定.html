@@ -14,8 +14,11 @@
     <p>{{message}}</p>
     <input v-model="message">
   </div>
-
   
+  <div class="demo2">
+
+  </div>
+
 </body>
 <script>
   new Vue({
@@ -24,5 +27,16 @@
         message:'hello'
     }
   })
+
+  //组件注册
+  let customInput={
+  props: ['value'],
+  template: `
+    <input
+      v-bind:value="value"
+      v-on:input="$emit('input', $event.target.value)"
+    >
+  `
+}
 </script>
 </html>
