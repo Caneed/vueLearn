@@ -14,14 +14,16 @@
       <h1>details:{{details()}}</h1>
     </div>
 
-    <div id="box">
-      <ul>
-        <li v-for="todo in todos">{{todo.text}}</li>
-      </ul>
+    <div id="vue_demo">
+      <h1>site:{{site}}</h1>
+      <h1>url:{{url}}</h1>
+      <h1>details:{{details()}}</h1>
     </div>
+
     <script>
       var vm = new Vue({
-        el: "#vue_demo",
+        el: "#vue_demo", //可以直接通过id进行获取。
+        // el:document.getElementById('vue_demo')//或者通过DOM对象获取
         data: {
           site: "hello",
           url: "www.baidu.com",
@@ -34,12 +36,6 @@
         },
       });
 
-      let vm2 = new Vue({
-        el: "#box",
-        data: {
-          todos: [{ text: "hello" }, { text: "haha" },{text:'hehe'}],
-        },
-      });
     </script>
   </body>
 </html>
