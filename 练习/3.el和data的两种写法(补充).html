@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="demo">{{name}}</div>
+</body>
+<script>
+  // //普通绑定
+  // new Vue({
+  //   el:'#demo',
+  //   data:{
+  //       name:'hello'
+  //     }
+  // })
+
+  //使用$mount代替el,使用比较灵活
+  let vm=new Vue({
+    data: {
+      name:'hello'
+    }
+  })
+  vm.$mount('#demo')
+
+  //data的两种写法
+  // 对象式
+  // data: {
+  //   name:'hello'
+  // }
+
+  // //函数式
+  //**data函数式的this为Vue实例对象
+  // data: function(){
+  //   return{
+  //     name:'hello'
+  //   }
+  // }
+  //在组件中必须使用函数式进行data的赋值
+</script>
+</html>
