@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 数据代理的定义：通过一个对象代理对另一个对象的属性的操作(读。写) -->
+</body>
+<script>
+  let obj1={x:100}
+  let obj2={y:200}
+
+  // 通过Object.defineProperty实现obj2对obj1中x属性的数据代理
+  Object.defineProperty(obj2,'x',{
+
+    get(){
+      // 绑定obj1.x
+      return obj1.x
+    },
+    set(value){
+      // 同步修改值
+      obj1.x=value
+    }
+  })
+
+  console.log(obj2);
+  // {y:200,x(...)}
+  
+  obj2.x=200
+  console.log(obj2.x);//200
+  console.log(obj1.x);//200
+  // 通过obj2来修改obj1中的x属性
+</script>
+</html>

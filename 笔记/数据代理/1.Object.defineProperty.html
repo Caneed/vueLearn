@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    let num=18
+    let person = {
+      name: "张三",
+      sex: "男",
+    };
+
+    // 用此方法可以在对象中添加属性
+    Object.defineProperty(person, "age", {
+      // // 属性值
+      // value: 18,
+      // //设置对象属性是否可枚举(遍历)，默认为false
+      // enumerable: true,
+      // // 设置对象属性是否可更改，默认为false
+      // writable:true,
+      // // 控制属性是否可以被删除，默认为false
+      // configurable:true
+
+      // getter和setter
+      // 在读取age属性时就会调用get方法，并返回age的值
+      get(){
+        console.log('getter');
+        return num
+      },
+      // 在修改age属性时会调用set方法，并且会收到修改的具体数值
+      set(value){
+        console.log('setter');
+        num=value
+      }
+    });
+    console.log(Object.keys(person));
+    // 当enumerable值为false时无法枚举出age属性
+    // 0
+    // "name"
+    // 1
+    // "sex"
+    // 2
+    // "age"
+
+    person.age=19
+    console.log(person);
+    // 当writeable属性为false时无法更改此属性
+    // {name: '张三', sex: '男', age: 19}
+
+
+    delete person.age
+    console.log(person);
+    // 当configurable为false时无法删除此属性
+    // {name: '张三', sex: '男'}
+
+
+    console.log(person.age);
+    //读取了age属性，触发getter
+    // getter 19
+
+    person.age=30
+    // 修改了age属性，触发setter
+    // setter
+    console.log(num);//30
+    // 触发setter不仅修改了属性，也修改了属性赋值的变量
+  </script>
+</html>
