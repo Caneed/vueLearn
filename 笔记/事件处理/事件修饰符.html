@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../../lib/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <style>
+    *{
+      margin: 20px;
+    }
+    .container {
+      height: 100px;
+      background-color: aqua;
+    }
+  </style>
+  <body>
+    <div id="root">
+      <!-- .prevent表示阻止默认事件(常用) -->
+      <a href="www.baidu.com" @click.prevent="showInfo">点击提示信息</a>
+
+      <!-- .stop表示阻止事件冒泡 -->
+      <div class="container" @click.prevent="showInfo">
+        <button @click.stop="showInfo">
+        点击提示信息
+      </button></div>
+
+      <!-- .once事件只触发一次(常用) -->
+      <!-- .capture启用事件捕获 -->
+
+      <!-- .self只有点击事件中的e.target为操作的元素时才触发事件(也能阻止冒泡) -->
+      <div @click.self="showMsg">
+        <button @click="showMsg">self</button>
+      </div>
+
+      <!-- .passive,立即执行默认事件(比如滚轮滚动wheel事件),无需等待触发的事件的回调函数(多用于移动端) -->
+    </div>
+  </body>
+  <script>
+    const vm = new Vue({
+      el: "#root",
+      data: {},
+      methods: {
+        showInfo(e) {
+          // 原生阻止默认事件
+          // e.preventDefault()
+           alert("hello");
+        },
+        showMsg(e){
+          console.log(e.target);
+        }
+      },
+    });
+  </script>
+</html>

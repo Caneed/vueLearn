@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../../lib/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <h2>名称:{{name}}</h2>
+      <h2>地址:{{address}}</h2>
+    </div>
+  </body>
+  <script>
+    let data = {
+      // vue实例中的这两个属性都是通过数据代理实现的，其底层vm对象中有相应属性的getter和setter方法
+      name: "呼市十八中",
+      address: "人民路",
+    };
+    const vm = new Vue({
+      el: "#root",
+      // data: data,
+      // 简写
+      data
+    });
+
+    // getter被调用
+    console.log(vm.name); //呼市十八中
+
+    // vue在实例化时将data属性存放在了接收对象vm中的_data属性上
+    console.log(vm._data===data);//true
+
+    // vue数据代理的顺序:在生成vue实例并定义data属性时，vue实例创建了一个_data的属性存放在vm{}对象上，根据_data再进行数据代理，在vm{}对象中再次暴露了定义的单个属性name,address
+    // vm实例输出:vm{
+    //   name:(...)
+    //   address:(...)
+    //   ......
+    //   _data:{...}
+    // }
+  </script>
+</html>
