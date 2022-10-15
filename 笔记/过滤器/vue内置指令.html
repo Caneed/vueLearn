@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../../lib/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- v-bind,单向绑定解析，简写为:xxx
+         v-model:双向绑定
+          v-for:循环渲染
+          v-if:条件渲染
+          v-show:条件渲染
+          v-else 
+          v-else-if
+          v-on:绑定事件，简写为@xxx-->
+
+    <div id="root">
+      <!-- v-text插入文本,它将name的值替换div中的文本内容，并不能解析标签 -->
+      <div v-text="name"></div>
+      <!-- v-html，它支持标签解析 -->
+      <div v-html="structor"></div>
+    </div>
+  </body>
+  <script>
+    const vm = new Vue({
+      el: "#root",
+      data: {
+        name:'hello',
+        structor:'<h3>hello</h3>'
+      },
+    });
+  </script>
+</html>

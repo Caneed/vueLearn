@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../../lib/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <form @click.prevent="submit">
+        <label for="username">姓名</label>
+        <!-- v-model.trim表示将输入的前后空格去掉 -->
+        <input type="text" id="username" v-model.trim="userInfo.username" /><br />
+        <label for="password">密码</label>
+        <input type="password" id="password" v-model="userInfo.password" /><br />
+        <label for="age">年龄</label>
+        <!-- v-model.number表示将输入的东西强制转换为数字类型再和实例中的属性去双向绑定 -->
+        <input type="number" v-model.number="userInfo.age" /><br />
+
+        <label for="sex">性别</label>
+        <input type="radio" value="male" v-model="userInfo.sex" />男
+        <input type="radio" value="female" v-model="userInfo.sex" />女
+        <br />
+        <label for="hobbies">爱好</label>
+        <input type="checkbox" value="smoke" v-model="userInfo.hobbies" />抽烟
+        <input type="checkbox" value="drink" v-model="userInfo.hobbies" />喝酒
+        <input type="checkbox" value="boil" v-model="userInfo.hobbies" />烫头
+        <br />
+        <label for="other">其他</label>
+        <!-- v-model.lazy表示在输入框失去焦点时才将vue实例中的属性和输入框的值双向绑定 -->
+        <textarea id="other" v-model.lazy="userInfo.other"></textarea>
+        <button>提交</button>
+      </form>
+    </div>
+  </body>
+  <script>
+    const vm = new Vue({
+      el: "#root",
+      data: {
+        userInfo: {
+          username: "",
+          password: "",
+          age: "",
+          sex: "",
+          hobbies: [],
+          other: "",
+        },
+      },
+      methods: {
+        submit() {
+          console.log(userInfo);
+        },
+      },
+    });
+  </script>
+</html>

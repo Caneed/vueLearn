@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <input type="text" placeholder="输入姓名过滤" v-model="name" />
+    <button @click="sort=1">升序</button>
+    <button @click="sort=2">降序</button>
+    <button @click="sort=0">原顺序</button>
+    <ul>
+      <li v-for="person in filterPersons" :key="person.id">
+        {{person.name}}----{{person.age}}
+      </li>
+    </ul>
+  </div>
+</body>
+<script>
+    const vm = new Vue({
+      el: "#root",
+      data: {
+        name: "",
+        sort:0,//0原顺序，1升序，2降序
+        persons: [
+          { id: 1, name: "周杰伦",age:30 },
+          { id: 2, name: "温兆伦",age:13 },
+          { id: 3, name: "周冬雨",age:50 },
+          { id: 4, name: "马冬梅",age:40 },
+        ],
+      },
+      // 计算属性实现
+      computed:{
+        filterPersons(){
+          const arr=this.persons.filter((el)=>{return el.name.indexOf(this.name)!==-1}) 
+          // 判排序
+          if(this.sort){
+            arr.sort((formVal,latVal)=>{
+              return this.sort===1?latVal.age-formVal.age:formVal.age-latVal.age
+            })
+          }
+          return arr
+        }
+      }
+    });
+</script>
+</html>

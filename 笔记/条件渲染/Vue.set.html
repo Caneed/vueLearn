@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+
+    <h1>姓名{{student.name}}</h1>
+    <h1>年龄{{student.age}}</h1>
+    <h1>性别{{student.sex}}</h1>
+  </div>
+</body>
+<script>
+
+  const vm=new Vue({
+    el:'#root',
+    data:{
+      student:{
+        name:'张三',
+        age:30
+      }
+    }
+  })
+  // 如果想在vm的data中后天添加数据，不能使用普通的形式
+  // vm.data.student.sex='男'
+  // vm._data.student.sex='男'
+
+  //可以使用Vue.set或者是vm.$set来添加,这样可以实现Vue的数据代理，然后就可以进行模板解析并显示到DOM树中
+  // Vue.set(vm.student,'sex','男')
+  vm.$set(vm.student,'sex','男')
+  // 但是这两个方法无法直接向vue实例对象的根数据中添加属性和值，比如直接向vue的data属性中添加值就不行
+</script>
+</html>

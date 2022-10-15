@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <h1>对arr进行排序操作</h1>
+    <!-- 使用方法操作 -->
+    <div>{{order()}}</div>
+    <!-- 使用计算属性操作 -->
+    <div>{{orderedArr}}</div>
+    <!-- 使用过滤器操作 -->
+    <!-- order是传入的过滤器，在vm实例中定义的order接收一个参数，参数就是|前的变量arr -->
+    <div>{{arr|order}}</div>
+    <!-- 在order中可以接收多个参数，第一个参数还是|前的arr -->
+    <div>{{arr|order('hello')}}</div>
+    <!-- 过滤器允许链式操作,其中的过滤器的参数是|前的返回值 -->
+    <h2>通过两个过滤器实现去重和排序操作</h2>
+    <div>{{arr|order|clear}}</div>
+  </div>
+</body>
+<script>
+
+// 全局注册过滤器，可以在所有vm上使用
+Vue.filter('clear',function(value){
+  let newArr=[]
+  value.filter(el=>{
+  if(!newArr.includes(el))
+  newArr.push(el)
+  return newArr
+  })
+  return newArr
+})
+  const vm=new Vue({
+    el:'#root',
+    data:{
+      arr:[3,2,4,56,1,31,424,31,31,321,32,4,431]
+    },
+    methods: {
+      order(){
+       let arr2 =this.arr.sort((a,b)=>{
+          return a-b
+        })
+        return arr2
+      }
+    },
+    computed:{
+      orderedArr(){
+        return this.arr.sort((a,b)=>{return a-b})
+      }
+    },
+    filters:{
+      order(value){
+        return value.sort((a,b)=>{return a-b})
+      }
+    }
+  })
+</script>
+</html>
