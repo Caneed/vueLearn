@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <h1>a:{{numbers.a}}</h1>
+    <button @click="numbers.a++">点击a++</button>
+<hr>
+    <h1>b:{{numbers.b}}</h1>
+    <button @click="numbers.b++">点击b++</button>
+  </div>
+</body>
+<script>
+  const vm=new Vue({
+    el:'#root',
+    data:{
+      numbers:{
+        a:100,
+        b:200
+      }
+    },
+    watch:{
+      // Vue检测多级数据中的单个数据的方法
+      'numbers.a':{
+        handler(){
+          console.log('a变了');
+        }
+      },
+
+      numbers:{
+        // 打开深度监视，检测numbers中对象的所有成员的变化
+        deep:true,
+        handler(){
+          console.log("numbers中的成员变了");
+        }
+      }
+    }
+  })
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../../lib/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <!-- vue绑定style内联样式可以将style赋值为一个对象，在vue实例中操作这个对象,要使用:style关键字来解析模板 -->
+      <div :style="styleObj">hello</div>
+      <!-- 也可以绑定为一个数组，在数组中存放对象 -->
+      <div :style="styleArr">hello</div>
+    </div>
+  </body>
+  <script>
+    const vm = new Vue({
+      el: "#root",
+      data: {
+        styleObj: {
+          backgroundColor: "red",
+          fontSize: "30px",
+          width: "300px",
+          height: "300px",
+        },
+        styleArr: [
+          {
+            backgroundColor: "red",
+            fontSize: "30px",
+          },
+          {
+            width: "300px",
+            height: "300px",
+          },
+        ],
+      },
+    });
+  </script>
+</html>

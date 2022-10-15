@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <!-- 将v-show绑定到字符串，在vue里去接收，值为true则出现，false则消失，它的底层实现为display:none -->
+    <h1 v-show="show">条件渲染1</h1>
+    <!-- 也可以接收一个表达式作为值1===1返回值为true -->
+    <h1 v-show="1===1">条件渲染2</h1>
+
+    <!-- v-if也可以实现和v-show一样的效果，但是v-if隐藏元素后，元素直接从文档流消失 -->
+    <h1 v-if="1===1">v-if(1)</h1>
+    <h1 v-if="1===2">v-if(1)</h1>
+
+    <!-- 当有一组判断时，可以使用v-if和v-else-if的组合 -->
+    <h1>点击n++{{n}}</h1>
+    <button @click="n++">点击n++</button>
+
+    <h2 v-if="n===2">hahaha</h2>
+    <h2 v-else-if="n===3">hehehe</h2>
+    <h2 v-else-if="n===4">heiheihei</h2>
+    <!-- 还可以在末尾添加v-else,和在js中的if->else if->else语句用法一样，它们这组判断中间不能插入其他东西，不然就不会起效果 -->
+    <h2 v-else>哈哈哈</h2>
+
+
+    <!-- v-if和template可以配合使用，将一组需要同样条件的元素包装成一个组，而template不会破坏文档结构,
+    template只能和v-if使用 -->
+    <template v-if="n===2">
+      <h3>1111</h3>
+      <h3>22222</h3>
+      <h3>333333</h3>
+    </template>
+  </div>
+</body>
+<script>
+  const vm=new Vue({
+    el:'#root',
+    data:{
+      show:true,
+      n:1
+    }
+  })
+</script>
+</html>

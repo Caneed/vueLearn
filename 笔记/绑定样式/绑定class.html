@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../lib/vue.min.js"></script>
+  <title>Document</title>
+  <style>
+    .basic{
+      border: 1px solid #000;
+      width: 300px;
+      height: 300px;
+    }
+
+    .s {
+      background-color: aquamarine;
+    }
+    .arr1 {
+      border-radius: 10px;
+    }
+    .arr2 {
+      font-size: larger;
+    }
+    .arr3 {
+      color: red;
+    }
+    .o1 {
+      background-color: cadetblue;
+    }
+    .o2 {
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <!-- 使用字符串绑定class,:class里面的字符串为vue对象中的属性 -->
+    <div class="basic" :class="bkg">hello</div>
+
+    <!-- 使用数组绑定class,当绑定多个class时需要使用它 -->
+    <div class="basic" :class="arr">hello</div>
+
+    <!-- 使用对象绑定class，将类名放到对象中,值为true时表示使用，为false时表示不使用 -->
+    <div class="basic" :class="obj">hello</div>
+  </div>
+</body>
+<script>
+  const vm=new Vue({
+    el:'#root',
+    data:{
+      bkg:'s',
+      arr:['arr1','arr2','arr3'],
+      obj:{
+        o1:true,
+        o2:true
+      }
+    }
+  })
+</script>
+</html>

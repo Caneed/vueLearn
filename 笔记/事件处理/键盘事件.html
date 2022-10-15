@@ -7,6 +7,39 @@
     <script src="../../lib/vue.js"></script>
     <title>Document</title>
   </head>
-  <body></body>
-  <script></script>
+  <body>
+    <div id="root">
+      <h2>欢迎来到{{name}}</h2>
+      <!-- .enter表示按键别名，只有捕获到对应按键才会触发事件 -->
+      <!-- 常用按键别名:
+      enter:回车
+      delete:删除和退格
+      space：空格
+      tab；换行（比较特殊，必须配合keydown使用）
+      上下左右:up,down,left,right -->
+      <input
+        type="text"
+        placeholder="按下回车触发事件"
+        @keyup.enter="showInfo"
+      />
+      <!-- 特殊的键：shift,ctrl,win,alt 
+      在配合keyup使用时必须要加上其他键，并先放开其他键才触发事件，如果配合keydown时则正常使用-->
+
+      <!-- 也可以通过按键的编码来绑定事件，但是不推荐，因为不同键盘的编码可能不统一 --> 
+      <!-- 键盘事件也支持连续调用，比如.ctrl.y表示按下ctrl+y时才触发事件 -->
+    </div>
+  </body>
+  <script>
+    const vm = new Vue({
+      el: "#root",
+      data: {
+        name: "can can need",
+      },
+      methods: {
+        showInfo(ev) {
+          console.log(ev.target.value);
+        },
+      },
+    });
+  </script>
 </html>

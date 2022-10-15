@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    姓：<input type="text" placeholder="输入姓" v-model="firstName"><br>
+    名：<input type="text" placeholder="输入名" v-model="lastName">
+    <h1>姓名:{{fullName}}</h1>
+  </div>
+</body>
+<script>
+  const vm=new Vue({
+    el:'#root',
+    data:{
+      firstName:'张',
+      lastName:'三'
+    },
+    // 计算属性：表示将vue里的属性(data)进行计算
+    computed:{
+      // 完整写法
+      // fullName:{
+      //   // 配置getter,和Object.defineProperty中的getter特性一样
+      //   // get调用时机:1.初次读取时2.所依赖的数据发生改变时
+      //   get(){
+      //     // fullName的值为getter的返回值
+      //     // get中的this为vm对象
+      //     return this.firstName+'-'+this.lastName
+      //   },
+      //   // 不是必须写的，当此计算属性被修改时会被调用
+      //   set(value){
+      //     console.log('setter'+value);
+      //     // 在里面修改属性
+      //   }
+      // }
+      // 简写（当确定不使用setter时）
+      // 计算属性可以直接写成函数，此函数就是getter
+      fullName:function(){
+        return this.firstName+'-'+this.lastName
+      }
+    }
+  })
+</script>
+</html>

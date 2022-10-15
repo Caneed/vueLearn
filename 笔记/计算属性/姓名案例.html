@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    姓：<input type="text" placeholder="输入姓" v-model="firstName"><br>
+    名：<input type="text" placeholder="输入名" v-model="lastName">
+    <h1>插值方法:{{firstName}}-{{lastName}}</h1>
+    <h1>方法使用：{{fullName()}}</h1>
+  </div>
+</body>
+<script>
+  const vm=new Vue({
+    el:'#root',
+    data:{
+      firstName:'张',
+      lastName:'三'
+    },
+    methods:{
+      fullName(){
+        return this.firstName+'-'+this.lastName
+      }
+    }
+  })
+</script>
+</html>
