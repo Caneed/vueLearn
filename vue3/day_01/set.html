@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../lib/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="root">
+    <div>{{student.name}}</div>
+    <div>{{student.age}}</div>
+    <div>{{student.count}}</div>
+    <button @click="setValue">add</button>
+</div>
+</body>
+<script>
+<!--    取代了Vue2中的$set和set-->
+    const count=Vue.ref(1)
+
+    const vm=Vue.createApp({
+        data(){
+            return{
+                student:{
+                    name:'张三',
+                    age:18,
+                    count
+                }
+            }
+        },
+        methods:{
+            setValue(){
+
+            }
+        }
+    }).mount('#root')
+</script>
+</html>
