@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../../lib/vue.global.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <h1>数量:{{mount}}</h1>
+      <h1>年龄:{{age}}</h1>
+      <h2>计算属性:{{fullName}}</h2>
+      <button @click="mount++">点击mount++</button>
+    </div>
+  </body>
+  <script>
+    const vm=Vue.createApp({
+      data() {
+        return {
+          mount: 1,
+          age: 2,
+        };
+      },
+      computed:{
+        fullName:{
+          get(){
+            return this.mount+this.age
+          }
+        }    
+      },
+      watch:{
+        fullName:{
+          immediate:true,
+          handler(oldValue,newValue){
+            console.log('fullname被改变了从'+newValue+'到'+oldValue);
+          }
+        }
+      }    
+    }).mount("#root");
+    console.log(vm);
+  </script>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../lib/vue.global.js"></script>
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: row;
+        }
+        .container button{
+            margin: 10px 20px;
+        }
+        .item div {
+            margin: 10px 20px;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #000;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    <div class="container">
+        <button v-for="item in items" :key="item.id" @click="checkType(item.price)">{{item.name}} {{item.price}}/斤</button>
+    </div>
+    <div class="container">
+    <button v-for="(item,index) in mount" :key="index" @click="checkMounted(item)">{{item}}斤</button>
+    </div>
+    <div class="container">
+<div class="item">
+            <div :style="{backgroundColor: price===''?'':'red'}">{{price === '' ? '无' : price}}</div>
+            <button @click="price=''">清空</button>
+        </div>
+        <div class="item">
+            <div :style="{backgroundColor: mounted===''?'':'green'}">{{mounted === '' ? '无' : mounted}}</div>
+            <button @click="mounted=''">清空</button>
+        </div>
+        <div class="item">
+        <div :style="{backgroundColor: sum===0?'':'red'}">{{sum === '' ? '无' : sum}}</div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                items: [{id: 1, name: '南瓜', price: 15}, {id: 2, name: '茄子', price: 5}, {id: 3, name: '番茄', price: 10}],
+                mount: [1, 2, 3],
+                price: '',
+                mounted: ''
+            }
+        },
+        computed: {
+            sum() {
+                return (this.price === '' || this.mounted === '') ? 0 : this.price * this.mounted
+            }
+        },
+        methods: {
+            checkType(price) {
+                console.log(price)
+                this.price = price
+            },
+            checkMounted(price) {
+                console.log(price)
+                this.mounted = price
+            },
+        }
+    }).mount('#root')
+</script>
+</html>
