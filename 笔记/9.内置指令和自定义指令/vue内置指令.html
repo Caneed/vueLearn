@@ -22,6 +22,14 @@
       <div v-text="name"></div>
       <!-- v-html，它支持标签解析 -->
       <div v-html="structor"></div>
+      <!-- v-cloak ,当网速过慢，v-cloak的作用是Vue在接管DOM元素时将v-cloak属性删除，可以在vue没有被加载时添加v-cloak，和css属性选择器配合使用[v-cloak]{}来防止展示出未经解析的模板的问题-->
+      <!-- v-once:v-once在第一次渲染后就变成静态渲染，以后数据改变就不会跟着改变它 -->
+      <h2 v-once>初始化的n是:{{n}}</h2>
+      <h2>n值是{{n}}</h2>
+      <button @click="n++">n++</button>
+      <!-- v-pre:使vue跳过此元素的编译渲染过程，vue不会解析加上v-pre的元素,会加快编译效率 -->
+      <h2 v-pre>我是v-pre</h2>
+
     </div>
   </body>
   <script>
@@ -29,7 +37,8 @@
       el: "#root",
       data: {
         name:'hello',
-        structor:'<h3>hello</h3>'
+        structor:'<h3>hello</h3>',
+        n:1
       },
     });
   </script>

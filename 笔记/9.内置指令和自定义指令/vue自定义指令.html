@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <div >n值是:<span v-text="n"></span></div>
+    <!-- 自定义指令 -->
+    <div >自定义指令放大10倍的n值是:<span v-big="n"></span></div>
+    <button @click="n++">n++</button>
+  </div>
+</body>
+<script>
+  const vm=new Vue({
+    el:'#root',
+    data:{
+      n:1
+    },
+    // 自定义指令
+    directives:{
+      // 传入两个值，一个是绑定它的DOM元素，第二个参数为对象，其中对象中的value就是n值
+      // 它被调用的时机：指令和元素绑定成功时会立即被调用一次，
+      // 指令所在的模板被重新解析的时候也会被调用
+      big(element,binding){
+        element.innerText=binding.value*10
+      }
+    }
+  })
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../lib/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <div>n值是{{n}}</div>
+    <button @click="add">点击n++</button>
+  </div>
+
+</body>
+<script>
+
+  new Vue({
+    el:'#root',
+    data:{
+      n:1
+    },
+    methods: {
+      add(){
+        this.n++
+      }
+    },
+// 初始化生命周期，事件，但是未开始数据代理，所以不会生成_data,methods
+    beforeCreate() {
+      console.log('beforeCreate');
+    },
+    // 初始化:创建数据检测，数据代理，可以访问_data,methods
+    created() {
+      console.log('created')
+    },
+  })
+</script>
+</html>
