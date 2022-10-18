@@ -29,10 +29,32 @@
 // 初始化生命周期，事件，但是未开始数据代理，所以不会生成_data,methods
     beforeCreate() {
       console.log('beforeCreate');
+      debugger
     },
     // 初始化:创建数据检测，数据代理，可以访问_data,methods
+    // 此时vue开始解析模板，创建虚拟DOM，页面还没有解析好的DOM内容
     created() {
       console.log('created')
+      debugger
+    },
+
+    // Tips
+    // 1.在created后，Vue要判断是否挂载了根结点,可以通过el:'#root',或者vm.$mount('')来挂载，如果不挂载，则不会向后进行解析操作
+    // 2.挂载了根结点之后要判断是否有template属性，如果有则template中的JSX文件全部解析到根结点上，并覆盖html中的根结点Root,如果没有template就正常显示html的root根结点中的内容
+    // beforeMount
+    // 呈现的是未经Vue编译的DOM结构，Vue已经解析完虚拟DOM，但是还没有呈现到页面上
+    // 在beforeMount中所有对DOM的操作最终都不奏效
+    beforeMount() {
+      console.log('beforeMount');
+      debugger
+    },
+    // 此时Vue已经解析完虚拟DOM并将其呈现到页面上，此时如果对DOM进行操作是有效的
+    // 至此Vue的初始化完成
+    mounted() {
+      console.log('mounted');
+      // 不提倡使用原生方法操作DOM
+      // document.querySelector('div').innerHTML='haha'
+      debugger
     },
   })
 </script>
