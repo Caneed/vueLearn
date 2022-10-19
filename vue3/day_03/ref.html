@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../lib/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="root">
+<!--    给html中的元素添加ref-->
+    <input type="text" ref="inputMsg">
+    <button @click="getRef">获取ref</button>
+<!--    给子组件添加ref-->
+    <my-child ref="child"></my-child>
+    <button @click="getCompRef">得到子组件的ref</button>
+</div>
+</body>
+<script !src="">
+
+    const comp={
+        //组件向父组件暴露方法和数据，没有暴露的无法访问
+        expose:['msg','getMsg'],
+        data(){
+            return{msg:'hello'}
+        },
+        template:`
+          <h1>msg:{{msg}}</h1>
+        <input type="text" v-model.trim="msg">
+        <button @click="getMsg">获取子组件中的msg</button>`,
+        methods:{
+            getMsg(){
+                console.log(this.msg)
+            }
+        }
+    }
+    Vue.createApp({
+        //注册组件
+        components:{
+            'my-child':comp
+        },
+        methods:{
+            getRef(){
+                console.log(this.$refs.inputMsg.value)
+            },
+            //得到子组件的ref
+            getCompRef(){
+                console.log(this.$refs.child)
+            }
+        }
+    }).mount('#root')
+</script>
+</html>
