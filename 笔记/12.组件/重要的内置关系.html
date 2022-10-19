@@ -12,6 +12,16 @@
 <div id="root"></div>
 </body>
 <script>
-
+    const comp = {
+        data() {
+            return {}
+        },
+    }
+    // <!--    VueComponent.prototype.__proto__===Vue.prototype-->
+    // console.log(comp.prototype.__proto__ == Vue.prototype)//true
+    //这样
+    const vm = new Vue({
+        components: {child: comp}
+    })
 </script>
 </html>
