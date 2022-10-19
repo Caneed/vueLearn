@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../lib/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="root">
+<!--    3.使用组件-->
+    <school-comp></school-comp>
+    <hr>
+    <student-comp></student-comp>
+    <hello-comp></hello-comp>
+</div>
+</body>
+<script>
+    // 使用组件的步骤:1.创建组件2.注册组件3.使用组件
+    <!--   1. 创建组件-->
+    const school=Vue.extend({
+        //组件中data必须使用函数式，如果用对象式的话，只要一个数据改变，其他地方引用该组件的地方数据都会改变
+        data() {
+            return {
+                name: '十八中',
+                address: '人民路'
+            }
+        },
+        template:`
+            <div>
+            <h1>name:{{name}}</h1>
+            <h1>address:{{address}}</h1>
+            </div>
+        `
+    })
+    const student=Vue.extend({
+        data() {
+            return {
+                name: '张三',
+                age: 18
+            }
+        },
+        template:`
+            <div>
+            <h1>name:{{name}}</h1>
+            <h1>age:{{age}}</h1>
+            </div>
+        `
+    })
+    const hello=Vue.extend({
+        template:`
+        <div>hello{{name}}</div>
+        `,
+        data(){
+            return {name:'tom'}
+        }
+    })
+
+    //全局注册组件
+    Vue.component('helloComp',hello)
+    const vm = new Vue({
+        el: '#root',
+        //2.注册配置组件(局部注册)
+        components:{
+            schoolComp:school,
+            studentComp:student
+        }
+    })
+
+//    总结:1.如果组件名为多个单词，比如上面的schoolComp,则在根结点使用时用-连接<school-comp>,或者在注册时直接使用'school-comp':school注册组件
+//    2.注册组件时不要使用html中预留的元素作为组件名
+//    3.在配置组件时可以在option中使用name来配置组件在开发者工具中呈现的标签名字
+//    4.组件可以使用双标签，也可以使用自闭合标签<school-comp/>,这种自闭合一般在脚手架中使用
+//    5.组件可以使用简写的配置方式componentName=Vue.extend({options})=>componentName={options},将Vue.extend省略
+</script>
+</html>

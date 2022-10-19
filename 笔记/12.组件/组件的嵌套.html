@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../lib/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script !src="">
+    const hello = {
+        template: `
+          <div>say{{ msg }}</div>`,
+        data() {
+            return {msg: 'hello'}
+        }
+    }
+    const student = {
+        template: `
+          <div>学生名:{{ name }}</div>`,
+        data() {
+            return {name: '张三'}
+        }
+    }
+    const school = {
+        template: `
+          <div>
+          <div>学校名：{{ msg }}</div>
+          <student></student>
+          </div>
+          `,
+        components: {
+            student
+        },
+        data() {
+            return {
+                msg: '十八中'
+            }
+        }
+    }
+
+    // 创建一个app组件来管理所有的vue组件
+    const app = {
+        template: `
+          <div>
+          <school></school>
+          <hello></hello>
+          </div>
+        `,
+        components: {
+            school,
+            hello
+        }
+    }
+    const vm = new Vue({
+        el: '#root',
+        components: {
+            app
+        },
+        template: `
+          <app></app>`
+    })
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../lib/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="root">
+    <h2>n:{{n}}</h2>
+    <button @click="n++">n++</button>
+    <button @click="bye">销毁</button>
+</div>
+</body>
+<script !src="">
+    const vm=new Vue({
+        el:'#root',
+        data:{n:1},
+        methods:{
+            bye(){
+                this.$destroy()
+            }
+        },
+        //销毁一般使用vm.$destroy()进行自删除
+        //vm在销毁之前调用的函数，此时会对数据进行解绑等操作
+        //但是此时vm对象的数据等还可以访问，但是数据不会更新，所以在此函数中对数据进行更改不会生效
+        beforeDestroy(){
+            console.log('beforeDestroy')
+            debugger
+        },
+    //    vm完全销毁，此生命周期钩子不做任何操作
+        destroyed(){
+            console.log('destroyed')
+        }
+    })
+</script>
+</html>

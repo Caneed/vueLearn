@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../lib/bootstrap.css">
+    <script src="../../lib/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="root">
+    <button class="btn btn-primary m-3" @click="add">添加</button>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">书名</th>
+            <th scope="col">作者名</th>
+            <th scope="col">性别</th>
+            <th scope="col">国家</th>
+            <th scope="col">描述</th>
+            <th scope="col">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="book in bookInfo" :key="book.id">
+            <td>{{book.id}}</td>
+            <td>{{book.name}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.sex === 'male' ? '男' : book.sex === 'other' ? '其他' : '女'}}</td>
+            <td>{{book.country}}</td>
+            <td>{{book.desc}}</td>
+            <td>
+                <button class="btn btn-success btn-sm" @click="change(book.id)">修改</button>
+                <button class="btn btn-danger btn-sm" @click="delete(book.id)">删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="container d-flex flex-column w-25 border border-dark" v-if="showPanel">
+        <div>修改</div>
+        <form class="container flex-column vstack">
+            <label for="name">书名</label>
+            <input type="text" id="name" v-model="book.name"><br>
+            <label for="author">作者名</label>
+            <input type="text" id="author" v-model="book.author"><br>
+            <label for="country">国家</label>
+            <input type="text" id="country" v-model="book.country"><br>
+            <label for="sex">性别</label>
+            <select name="sex" id="sex" v-model="book.sex">
+                <option value="none">选择性别</option>
+                <option value="other">其他</option>
+                <option value="male">男</option>
+                <option value="female">女</option>
+            </select><br>
+            <label for="desc">描述</label>
+            <textarea id="desc" v-model="book.desc"></textarea><br>
+            <button class="btn btn-success" @click.prevent="onAdd===true?addConfirm():changeConfirm()">确定</button>
+            <button class="btn btn-danger" @click.prevent="cancel">取消</button>
+        </form>
+    </div>
+</div>
+</body>
+<script !src="">
+    let books = [{id: 1, name: '霍乱时期的爱情', author: '加西亚马尔克斯', sex: 'male', country: 'COL', desc: '舔狗的故事'},
+        {id: 2, name: '沉默的大多数', author: '王小波', sex: 'male', country: 'CN', desc: '杂文'},
+        {id: 3, name: '解忧杂货铺', author: '东野圭吾', sex: 'male', country: 'JP', desc: '楼下小卖铺'},
+        {id: 4, name: '无人生还', author: '阿加莎克里斯蒂', sex: 'female', country: 'EN', desc: '就嗯死'}]
+    Vue.createApp({
+        data() {
+            return {
+                bookInfo: books,
+                showPanel: false,
+                onChange: false,
+                book: {}
+            }
+        },
+        methods: {
+            //添加
+            add() {
+                //显示界面
+                if (!this.showPanel)
+                    this.showPanel = !this.showPanel
+                this.onAdd = !this.onAdd
+                this.book.id = this.bookInfo.length + 1
+            },
+            change(id) {
+                if (!this.showPanel)
+                    this.showPanel = !this.showPanel
+                this.book = JSON.parse(JSON.stringify(this.bookInfo[id - 1]))
+            },
+            addConfirm() {
+                this.bookInfo.push(this.book)
+                this.showPanel = !this.showPanel
+                this.book = {}
+            },
+            changeConfirm() {
+                this.bookInfo.splice(this.book.id - 1, 1, this.book)
+                this.book = {}
+                this.showPanel = false
+            },
+            cancel() {
+                this.book = {}
+                this.showPanel = false
+            },
+            delete(id) {
+                bookInfo.filter(el => {
+                    return el.id = id
+                })
+            }
+        }
+    }).mount('#root')
+</script>
+</html>

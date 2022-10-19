@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../lib/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script>
+
+
+    const school={
+        template:`
+        <div>
+        <div>学校名:{{name}}</div>
+</div>
+        `,
+        data(){
+            return {name:'十八中'}
+        }
+    }
+
+    //组件的本质是构造函数
+    console.log(school)//f VueComponent
+    //在每次将组件定义到DOM上时，Vue就会调用此构造函数，并且生成关于此组件的实例对象
+    //每次调用Vue.extend,返回的都是一个全新的vueComponent
+    //在组件中的this指向的都是VueComponent实例对象
+    new Vue({
+        el:'#root',
+        components:{
+            school
+        },
+        template:`<school></school>`
+    })
+
+
+//
+</script>
+</html>

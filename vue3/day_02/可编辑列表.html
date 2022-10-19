@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../lib/vue.global.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="../../lib/bootstrap.css">
+</head>
+<body>
+<div id="root">
+    <div class="container d-flex flex-row hstack gap-5">
+        <div>姓名:
+            <span v-if="!show">{{user.name}}</span>
+            <input v-if="show" type="text" v-model="temp.name">
+        </div>
+        <div>性别:
+            <span v-if="!show">{{user.sex === 'male' ? '男' : '女'}}</span>
+            <select v-if="show" name="" id="" v-model="temp.sex">
+                <option value="male">男</option>
+                <option value="female">女</option>
+            </select>
+        </div>
+        <div>年龄:
+        <span v-if="!show">{{user.age}}</span>
+            <input v-model.number="temp.age" v-if="show" type="number"></div>
+    </div>
+    <button v-if="!show" class="btn btn-success" @click="edit">编辑</button>
+    <button v-if="show" class="btn btn-success" @click="confirm">确定</button>
+    <button v-if="show" class="btn btn-danger" @click="cancel">取消</button>
+</div>
+</body>
+<script !src="">
+
+    Vue.createApp({
+        data() {
+            return {
+                user:{
+                    name: '张三',
+                    sex: 'male',
+                    age: 16,},
+                    show: false,
+            }
+        },
+        methods:{
+            edit(){
+                this.show=!this.show
+                this.temp=JSON.parse(JSON.stringify(this.user))
+            },
+            confirm() {
+                this.show=!this.show
+                this.user=JSON.parse(JSON.stringify(this.temp))
+            },
+            cancel(){
+                this.show=!this.show
+                this.temp={}
+            }
+        }
+    }).mount('#root')
+</script>
+</html>

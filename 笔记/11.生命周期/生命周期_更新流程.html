@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../lib/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="root">
+    <div>n的值是:{{n}}</div>
+    <button @click="n++">n++</button>
+</div>
+</body>
+<script>
+    const vm=new Vue({
+        el:'#root',
+        data:{n:1},
+    //    当data改变时，马上调用beforeUpdate()
+    //    此时，页面还是旧的，但是数据是新的,数据已经改变但是页面并没有同步渲染
+        beforeUpdate(){
+            console.log('beforeUpdated')
+            console.log(this.n)
+            debugger
+        },
+
+    //    根据新数据，生成新的虚拟DOM，和旧的虚拟DOM进行对比并渲染成真实DOM
+    //    调用updated(),此时数据和页面都进行了更新
+        updated(){
+            console.log('updated')
+            console.log(this.n)
+            debugger
+        }
+    })
+</script>
+</html>

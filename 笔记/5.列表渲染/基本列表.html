@@ -12,8 +12,9 @@
       <!-- 列表循环和JS中的item of arr,item in arr用法一样,注意要加唯一标识符:key -->
       <!-- 遍历数组 -->
       <ul>
-        <li v-for="person in persons" :key="person.id">
+        <li v-for="person in persons">
           {{person.name}}{{person.age}}
+          <input type="text">
         </li>
       </ul>
 
