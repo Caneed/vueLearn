@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../lib/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="root">
+    <div>mount:{{mount}}</div>
+    <button @click="mount++">mount++</button>
+</div>
+</body>
+<script !src="">
+    Vue.createApp({
+        //    Vue3新增的生命周期，主要用于创建组合式API,
+        // 此时无法访问this
+        setup() {
+            const mount = Vue.ref(0)
+            return{mount}
+        },
+    }).mount('#root')
+</script>
+</html>
