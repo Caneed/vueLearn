@@ -1,10 +1,10 @@
 <template>
-$END$
+<h1>hello this is Home</h1>
 </template>
 
 <script>
 export default {
-name: "LocalComp"
+  name: "Home"
 }
 </script>
 

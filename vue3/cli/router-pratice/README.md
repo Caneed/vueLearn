@@ -1,4 +1,4 @@
-# cli-project
+# router-pratice
 
 ## Project setup
 ```

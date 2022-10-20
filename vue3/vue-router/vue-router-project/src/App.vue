@@ -1,19 +1,15 @@
 <template>
-  <div>
-  <School/>
-    <Comp-props :name="李四" :age="18" address="哈哈哈"></Comp-props>
-  </div>
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
-import School from './components/School'
-import CompProps from "@/components/CompProps";
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    School,
-    CompProps
+    HelloWorld
   }
 }
 </script>
