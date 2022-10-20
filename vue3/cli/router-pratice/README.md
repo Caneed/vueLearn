@@ -1,4 +1,4 @@
-# router-pratice
+# index-pratice
 
 ## Project setup
 ```

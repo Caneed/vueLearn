@@ -1,10 +1,10 @@
 <template>
-$END$
+<h1>i am lazy comp</h1>
 </template>
 
 <script>
 export default {
-name: "LazyComp"
+  name: "LazyComp"
 }
 </script>
 

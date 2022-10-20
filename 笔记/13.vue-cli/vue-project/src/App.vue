@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+<!--    普通组件-->
     <School></School>
   </div>
 </template>
@@ -10,7 +11,12 @@ import School from '@/components/School.vue'
 export default {
   name: 'App',
   components: {
-    School
+    School,
+    SlotChild,
+    ASyncComp
+  },
+  data(){
+    return {show:false}
   }
 }
 </script>

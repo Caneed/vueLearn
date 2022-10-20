@@ -1,10 +1,10 @@
 <template>
-$END$
+  <h1>我是page1</h1>
 </template>
 
 <script>
 export default {
-name: "Page1"
+  name: "Page1"
 }
 </script>
 
