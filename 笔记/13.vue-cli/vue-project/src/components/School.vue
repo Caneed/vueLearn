@@ -1,13 +1,20 @@
 <template>
-$END$
+  <div>
+    <div>msg:{{msg}}</div>
+    <div>name:{{name}}</div>
+  </div>
 </template>
 
 <script>
 export default {
-name: "School"
+  data () {
+    return {
+      msg: 'msg',
+      name: 'i am name'
+    }
+  }
 }
 </script>
 
-<style scoped>
-
+<style>
 </style>
