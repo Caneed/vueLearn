@@ -1,10 +1,11 @@
 <template>
-$END$
+  <h1>Comp2</h1>
+  <input type="text">
 </template>
 
 <script>
 export default {
-name: "Comp2"
+  name: "Comp2"
 }
 </script>
 

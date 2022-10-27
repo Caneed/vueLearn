@@ -1,12 +1,14 @@
-<template>
-$END$
-</template>
+<script setup>
 
-<script>
-export default {
-name: "响应式数据"
-}
+
 </script>
+
+
+<template>
+<div>
+
+</div>
+</template>
 
 <style scoped>
 
