@@ -17,8 +17,9 @@ export default {
       age:18,
       sex:'male'
     }
-  }
+  },
 }
+
 </script>
 
 <style scoped>
