@@ -4,9 +4,9 @@
 
 
 <template>
-<div>
-$END$
-</div>
+  <div>
+    <a-button>ant按钮</a-button>
+  </div>
 </template>
 
 

@@ -4,9 +4,10 @@
 
 
 <template>
-<div>
-$END$
-</div>
+  <div>
+    <h2>comp1</h2>
+    <div>comp1</div>
+  </div>
 </template>
 
 
