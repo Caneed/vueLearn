@@ -1,14 +1,13 @@
 <template>
+$END$
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-  components: {
-  }
+name: "mian"
 }
 </script>
 
-<style>
+<style scoped>
+
 </style>
