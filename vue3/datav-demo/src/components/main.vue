@@ -1,10 +1,12 @@
 <template>
-$END$
+  <div id="data-view">
+  <dv-full-screen-container></dv-full-screen-container>
+  </div>
 </template>
 
 <script>
 export default {
-name: "mian"
+  name: "main"
 }
 </script>
 
