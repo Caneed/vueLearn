@@ -1,4 +1,6 @@
 <template>
+<!--消息订阅与发布，使用一个第三方库来实现:pubsub-js-->
+<!--  npm i pubsub-js-->
   <div>
     <School/>
     <Student/>
@@ -15,6 +17,7 @@ export default {
     School,
     Student
   },
+  methods: {}
 }
 </script>
 

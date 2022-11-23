@@ -2,9 +2,11 @@
   <div>
     <div>name{{name}}</div>
     <div>address:{{address}}</div>
+    <button @click="sendSchoolName">将学校名传递给app</button>
   </div>
 </template>
 <script>
+
 export default {
   name: "School",
   data(){
@@ -13,6 +15,15 @@ export default {
       address:'人民路'
     }
   },
+  //子组件在props中接收到父组件传来的参数
+  props:['getSchoolName'],
+  methods:{
+    //定义传参的函数
+    sendSchoolName(){
+      //调用父组件传来的方法并传参
+      this.getSchoolName(this.name)
+    }
+  }
 }
 </script>
 

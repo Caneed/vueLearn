@@ -5,6 +5,7 @@
   </div>
 </template>
 <script>
+
 export default {
   name: "School",
   data(){
@@ -13,6 +14,15 @@ export default {
       address:'人民路'
     }
   },
+  mounted() {
+    this.$bus.$on('hello',(data)=>{
+      console.log('school接收到了来自student组件传输的数据:',data)
+    })
+  },
+  beforeDestroy() {
+    //在组件销毁之前将事件绑定都解绑
+    this.$bus.off()
+  }
 }
 </script>
 

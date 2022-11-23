@@ -1,4 +1,6 @@
 <template>
+<!--全局事件总线:可以实现任意组件间的通信-->
+<!--  一般在main.js,引入Vue后在Vue的原型对象上添加想要添加的数据-->
   <div>
     <School/>
     <Student/>
@@ -15,6 +17,7 @@ export default {
     School,
     Student
   },
+  methods: {}
 }
 </script>
 
