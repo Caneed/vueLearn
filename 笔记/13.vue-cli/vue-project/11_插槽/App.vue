@@ -11,6 +11,9 @@
       <template #place2>
         <div>我是插槽二要插入的标签</div>
       </template>
+      <!--  动态插槽名,可以动态的标记插槽名, v-slot:[dynamicName]或者 #[dynamicName] -->
+<!--      <template v-slot:[dynamicName]></template>-->
+<!--      <template #[dynamicName]></template>-->
     </category>
   </div>
 </template>
