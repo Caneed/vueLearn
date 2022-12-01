@@ -2657,7 +2657,7 @@ EPUBJS.Book = function(options){
 	* The renderer will handle displaying the content using the method provided in the settings
 	*/
 	this.renderer = new EPUBJS.Renderer(this.settings.render_method);
-	//-- Set the width at which to switch from spreads to single pages
+	//-- Set the width at which to switch from spreads to single views
 	this.renderer.setMinSpreadWidth(this.settings.minSpreadWidth);
 	this.renderer.setGap(this.settings.gap);
 	//-- Pass through the renderer events
@@ -3086,7 +3086,7 @@ EPUBJS.Book.prototype.listenToRenderer = function(renderer){
 			});
 
 			// TODO: Add event for first and last page.
-			// (though last is going to be hard, since it could be several reflowed pages long)
+			// (though last is going to be hard, since it could be several reflowed views long)
 		}
 	}.bind(this));
 
@@ -5824,7 +5824,7 @@ EPUBJS.Layout.ReflowableSpreads.prototype.calculatePages = function() {
 	var totalWidth = this.documentElement.scrollWidth;
 	var displayedPages = Math.ceil(totalWidth / this.spreadWidth);
 
-	//-- Add a page to the width of the document to account an for odd number of pages
+	//-- Add a page to the width of the document to account an for odd number of views
 	this.documentElement.style.width = ((displayedPages * this.spreadWidth) - this.gap) + "px";
 
 	return {
@@ -6180,7 +6180,7 @@ EPUBJS.Pagination.prototype.pageFromCfi = function(cfi){
 		pg = index-1 >= 0 ? this.pages[index-1] : this.pages[0];
 		if(pg !== undefined) {
 			// Add the new page in so that the locations and page array match up
-			//this.pages.splice(index, 0, pg);
+			//this.views.splice(index, 0, pg);
 		} else {
 			pg = -1;
 		}
@@ -6202,7 +6202,7 @@ EPUBJS.Pagination.prototype.cfiFromPage = function(pg){
 	if(index != -1) {
 		cfi = this.locations[index];
 	}
-	// TODO: handle pages not in the list
+	// TODO: handle views not in the list
 	return cfi;
 };
 
@@ -6843,7 +6843,7 @@ EPUBJS.Render.Iframe.prototype.totalHeight = function(){
 EPUBJS.Render.Iframe.prototype.setPageDimensions = function(pageWidth, pageHeight){
 	this.pageWidth = pageWidth;
 	this.pageHeight = pageHeight;
-	//-- Add a page to the width of the document to account an for odd number of pages
+	//-- Add a page to the width of the document to account an for odd number of views
 	// this.docEl.style.width = this.docEl.scrollWidth + pageWidth + "px";
 };
 
@@ -6906,7 +6906,7 @@ EPUBJS.Render.Iframe.prototype.addHeadTag = function(tag, attrs, _doc) {
 };
 
 EPUBJS.Render.Iframe.prototype.page = function(pg){
-	this.leftPos = this.pageWidth * (pg-1); //-- pages start at 1
+	this.leftPos = this.pageWidth * (pg-1); //-- views start at 1
 
 	// Reverse for rtl langs
 	if(this.direction === "rtl"){
@@ -6923,7 +6923,7 @@ EPUBJS.Render.Iframe.prototype.getPageNumberByElement = function(el){
 
 	left = this.leftPos + el.getBoundingClientRect().left; //-- Calculate left offset compaired to scrolled position
 
-	pg = Math.floor(left / this.pageWidth) + 1; //-- pages start at 1
+	pg = Math.floor(left / this.pageWidth) + 1; //-- views start at 1
 
 	return pg;
 };
@@ -6933,7 +6933,7 @@ EPUBJS.Render.Iframe.prototype.getPageNumberByRect = function(boundingClientRect
 	var left, pg;
 
 	left = this.leftPos + boundingClientRect.left; //-- Calculate left offset compaired to scrolled position
-	pg = Math.floor(left / this.pageWidth) + 1; //-- pages start at 1
+	pg = Math.floor(left / this.pageWidth) + 1; //-- views start at 1
 
 	return pg;
 };
@@ -7086,7 +7086,7 @@ EPUBJS.Renderer.prototype.initialize = function(element, width, height){
 /**
 * Display a chapter
 * Takes: chapter object, global layout settings
-* Returns: Promise with passed Renderer after pages has loaded
+* Returns: Promise with passed Renderer after views has loaded
 */
 EPUBJS.Renderer.prototype.displayChapter = function(chapter, globalLayout){
 	var store = false;
@@ -7347,7 +7347,7 @@ EPUBJS.Renderer.prototype.reformat = function(){
 		this.layout = new EPUBJS.Layout[this.layoutMethod]();
 	}
 
-	// Reset pages
+	// Reset views
 	this.chapterPos = 1;
 
 	this.render.page(this.chapterPos);
