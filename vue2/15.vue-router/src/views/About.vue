@@ -1,16 +1,33 @@
 <template>
-<div>about</div>
+  <div>
+    <h2>about</h2>
+    <hr>
+    <button @click="toNews">News</button>
+    <button @click="toMessage">Message</button>
+    <hr>
+    <keep-alive include="News">
+      <router-view></router-view>
+    </keep-alive>
+  </div>
 </template>
 
 <script>
 export default {
   name: "About",
-  //在切换视图时destroyed会被调用，同时被切换出来的视图中的mounted也会被调用
-  mounted() {
-    console.log('about的mounted')
-  },
-  destroyed() {
-    console.log('about的destroy')
+  methods: {
+    toNews() {
+      this.$router.push({
+        name: 'news',
+        params:{itemList:[{id: 1, text: 'news001'}, {id: 2, text: "news002"}, {id: 3, text: "news003"}]},
+        props:true
+      })
+    },
+    toMessage(){
+      this.$router.push({
+        name:'message',
+        query:{name:'message',text:'send by query'}
+      })
+    }
   }
 }
 </script>

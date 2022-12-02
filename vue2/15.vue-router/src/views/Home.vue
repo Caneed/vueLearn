@@ -1,16 +1,10 @@
 <template>
-<div>Home</div>
+<h2>Home</h2>
 </template>
 
 <script>
 export default {
-  name: "Home",
-  mounted() {
-    console.log('home的mounted')
-  },
-  destroyed() {
-    console.log('home的destroy')
-  }
+  name: "Home"
 }
 </script>
 

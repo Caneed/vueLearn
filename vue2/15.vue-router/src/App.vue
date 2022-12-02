@@ -1,9 +1,12 @@
 <template>
   <div>
-<!--    路由切换模式,通过replace或者:replace="true"来切换路由切换的模式,默认模式为push-->
-    <router-link replace to="/">Home</router-link>
+    <button @click="$router.forward()">forward</button>
+    <button @click="$router.back()">back</button>
+    <button @click="$router.go(-2)">go(-2)</button>
     <br>
-    <router-link :replace="true" to="/About">About</router-link>
+    <button @click="toHome">Home</button>|
+    <button @click="toAbout">About</button>
+    <hr>
     <router-view></router-view>
   </div>
 </template>
@@ -12,7 +15,17 @@
 
 export default {
   name: 'App',
-  components: {
+  methods:{
+    toAbout(){
+      this.$router.push({
+        path:'/About'
+      })
+    },
+    toHome(){
+      this.$router.push({
+        path:'/'
+      })
+    }
   }
 }
 </script>
