@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //    源数据
+    let person = {
+        name: '张三',
+        age: 18
+    }
+
+    //    vue2的响应式原理
+//     let p = {}
+//     //实现person源数据的一个数据劫持
+//     Object.defineProperty(p, 'name', {
+//         get() {
+//             //    读取name时调用
+//             return person.name
+//         },
+//         set(value) {
+//             //修改name时调用
+//             person.name = value
+//         }
+//     })
+//     Object.defineProperty(p, 'age', {
+//         get() {
+//             return person.age
+//         }, set(value) {
+//             person.age = value
+//         }
+//     })
+// //    此时对象p上的成员都是代理成员，都具有getter和setter
+// //    如果新增成员，它不会是一个具有代理的成员=>没有getter和setter=>无法形成响应式
+//     p.sex='male'
+// //    如果删除成员，它只会返回true或者false，不会捕获到删除的操作，所以也不会形成响应式，页面也不会实时更新
+//     delete p.name//false
+
+//    vue3的响应式原理
+
+// //    Reflect介绍,reflect简单来说是Object的映射
+// //    它身上有get,set等Object上有的方法
+//     let obj={a:1,b:2}
+//     let res=Reflect.get(obj,'a')
+//     console.log(res)//1
+//     let res1=Reflect.set(obj,'b',3)
+//     let res2=Reflect.set(obj,'b',4)
+//     console.log(res1,res2)//true true
+//    Reflect上的方法都会以返回值的形式去进行返回,不会报错，所以vue3在封装框架时使用的是Reflect来进行代理中源数据的处理，而不是直接对象访问操作成员
+//    proxy对象传入参数,第一个参数是要代理的对象 第二个是配置对象
+//    proxy在读取，修改删除和添加成员时都有相应的函数来进行操作，所以vue3中重写了这些函数来进行响应式的实现
+    const p=new Proxy(person,{
+    //    proxy中的getter接收两个参数，第一个是源对象，第二个是读取的属性名,读取哪一个属性,它就是谁
+        get(target,propName){
+            console.log(`读取了代理中的${propName}属性源数据是${target}`)
+            return Reflect.get(target,propName)
+        },
+    //    setter中前两个和getter一样，最后多接受一个修改的值
+        set(target,propName,value){
+            //在修改之后进行响应式的界面刷新
+            console.log(`修改了代理中的${propName},修改为${value}`)
+            Reflect.set(target,propName,value)
+        },
+    //    读取和修改时分别调用getter和setter,在proxy中,删除和新增成员也会调用相应的函数
+    //    删除的时候触发
+        deleteProperty(target, propName) {
+            console.log(`删除了代理中的${propName}`)
+            return Reflect.deleteProperty(target,propName)
+        }
+    //    新增时直接调用setter
+    })
+
+</script>
+</html>
