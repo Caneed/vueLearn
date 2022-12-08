@@ -1,6 +1,6 @@
 <template>
-  <Demo v-if="isShowDemo"/>
-  <button @click="isShowDemo=!isShowDemo">点击隐藏/显示</button>
+  <Demo   v-if="isShowDemo"/>
+  <button @click="isShowDemo=!isShowDemo">显示/隐藏</button>
 </template>
 
 <script>

@@ -34626,7 +34626,7 @@
 	 * Extensible curve object
 	 *
 	 * Some common of curve methods:
-	 * .getPoint( t, optionalTarget ), .getTangent( t )
+	 * .usePoint( t, optionalTarget ), .getTangent( t )
 	 * .getPointAt( u, optionalTarget ), .getTangentAt( u )
 	 * .getPoints(), .getSpacedPoints()
 	 * .getLength()
@@ -34671,7 +34671,7 @@
 
 		getPoint: function ( /* t, optionalTarget */ ) {
 
-			console.warn( 'THREE.Curve: .getPoint() not implemented.' );
+			console.warn( 'THREE.Curve: .usePoint() not implemented.' );
 			return null;
 
 		},
@@ -34686,7 +34686,7 @@
 
 		},
 
-		// Get sequence of points using getPoint( t )
+		// Get sequence of points using usePoint( t )
 
 		getPoints: function ( divisions ) {
 
@@ -36169,9 +36169,9 @@
 
 		},
 
-		// We cannot use the default THREE.Curve getPoint() with getLength() because in
-		// THREE.Curve, getLength() depends on getPoint() but in THREE.CurvePath
-		// getPoint() depends on getLength
+		// We cannot use the default THREE.Curve usePoint() with getLength() because in
+		// THREE.Curve, getLength() depends on usePoint() but in THREE.CurvePath
+		// usePoint() depends on getLength
 
 		getLength: function () {
 
