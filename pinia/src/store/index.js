@@ -14,6 +14,7 @@ export const useStore = defineStore('main', {
             people: [{id: '1', name: '李四'}, {id: '2', name: '王五'}, {id: '3', name: '赵六'}]
         }
     },
+    //2.getters选项
     // getter相当于state的一个计算属性,使用getters定义:
     //getters中的配置项可以是一个函数。函数参数为state
     getters: {
@@ -32,10 +33,16 @@ export const useStore = defineStore('main', {
             //.............
             return (id) => state.people.find((user) => user.id === id)
         },
-    //    也可以通过API来访问其它store中的getter
-        getCartState:()=>{
-            const cartStore=useCartStore()
+        //    也可以通过API来访问其它store中的getter
+        getCartState: () => {
+            const cartStore = useCartStore()
             return cartStore.purchaseId()
+        }
+    },
+    //actions 相当于组件中的 methods ,一般在actions中定义业务逻辑
+    actions: {
+        increment(){
+            this.count++
         }
     }
 })

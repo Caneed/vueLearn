@@ -8,7 +8,7 @@ import {useCartStore} from "@/store/cart";
 const store = useStore()
 console.log(store)//proxy{....}
 //也可以创建第二个store
-const cartStore=useCartStore()
+const cartStore = useCartStore()
 console.log(cartStore)
 
 
@@ -37,6 +37,9 @@ function changePart() {
 //getters部分=========================
 //直接可以通过store来访问getter
 console.log(store.namePlus)
+
+
+//Actions部分====================================
 </script>
 
 <template>
@@ -54,12 +57,15 @@ console.log(store.namePlus)
   <hr>
   <!--  向getter中传递参数-->
   <h1>所有people:</h1>
-  <h3>{{store.people}}</h3>
+  <h3>{{ store.people }}</h3>
   <h1>通过id查找people:</h1>
-  <h3>查找到的用户:{{store.getNameById('1')}}</h3>
+  <h3>查找到的用户:{{ store.getNameById('1') }}</h3>
+  <h3>{{ cartStore.getPurchaseId }}</h3>
   <hr>
-  <h1>得到其它store的属性:{{store.getCartState()}}</h1>
-  <h3>{{cartStore.getPurchaseId}}</h3>
+  <!--  Actions-->
+  <h3>actions</h3>
+  <!--  actions在组件中可以像方法一样调用-->
+  <button @click="store.increment()">点击通过actions增加state:{{ store.count }}</button>
 </template>
 
 <style scoped>
