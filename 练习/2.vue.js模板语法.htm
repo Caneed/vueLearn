@@ -18,15 +18,15 @@
     <div id="app">{{message}}</div>
     <div id="demo" v-html="message"></div>
     <div id="app2">
-      <label for="r1">修改颜色</label
-      ><input type="checkbox" v-model="use" id="r1" /> <br /><br />
+      <label for="r1">修改颜色</label>
+      <input type="checkbox" v-model="use" id="r1" />
+      <br /><br />
       <div v-bind:class="{'class1': use}">v-bind:class 指令</div>
     </div>
 
     <div id="box">
-      <span v-bind:title="message">
-        鼠标悬停几秒钟查看此处动态绑定的提示信息！</span
-      >
+      <span v-bind:title="message"
+        >鼠标悬停几秒钟查看此处动态绑定的提示信息！</span>
     </div>
   </body>
   <script>
