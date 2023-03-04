@@ -26,7 +26,7 @@ export default {
       //   proxy:'http://localhost:5000'
       // }
       //  表示在5000端口中设置了代理服务器，此时直接请求http://localhost:8080/student就可以得到数据
-      //但是此方法有缺点，只能请求一个接口，并且如果本地的8080端口中有stuent资源，会优先请求本地而不是请求代理服务器
+      //但是此方法有缺点，只能请求一个接口，并且如果本地的8080端口中有student资源，会优先请求本地而不是请求代理服务器
       // axios.get('http://localhost:8080/student').then(res=>{
       //   console.log(res.data)
       // },reason=>{
